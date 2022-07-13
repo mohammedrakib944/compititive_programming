@@ -1,2 +1,2 @@
 # compititive_programming
-My practive Questions
+My Practice Questions
