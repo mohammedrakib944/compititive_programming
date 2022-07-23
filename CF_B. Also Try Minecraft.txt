@@ -1,0 +1,65 @@
+#include <iostream>
+#include <set>
+#include <string.h>
+#include <string>
+#include <algorithm>
+#include <bitset>
+#include <map>
+#include <set>
+#include <vector>
+#include <unordered_set>
+#include <math.h>
+#include <bitset>
+
+using namespace std;
+ 
+const long long N = 1e5+5;
+
+long long ar1[N];
+long long ar2[N];
+
+int main (){
+	
+		long long n,m;
+		cin >> n >> m;
+
+		long long ar[n+5];
+
+		for(long long i = 1; i <= n; i++){
+			cin >> ar[i];
+		}
+
+		ar1[0] = ar1[1] = 0;
+		long long sum1 = 0;
+		for(long long i = 1; i < n; i++){
+			if(ar[i] > ar[i+1]){
+				sum1 += (ar[i] - ar[i+1]);
+			}
+			ar1[i+1] = sum1;
+		}	
+
+		reverse(ar+1, ar+n+1);
+
+		
+		ar2[0] = ar2[1] = 0;
+		long long sum2 = 0;
+		for(long long i = 1; i < n; i++){
+			if(ar[i] > ar[i+1]){
+				sum2 += (ar[i] - ar[i+1]);
+			}
+			ar2[i+1] = sum2;
+		}	
+
+		reverse(ar2+1, ar2+n+1);
+
+		long long x,y;
+		while(m--){
+			cin >> x >> y;
+			if(x < y){
+				cout << ar1[y] - ar1[x] << endl;
+			}else{
+				cout << ar2[y] - ar2[x] << endl;
+			}
+		}
+		
+}
