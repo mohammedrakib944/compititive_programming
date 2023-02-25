@@ -1,18 +1,25 @@
 https://leetcode.com/problems/symmetric-tree/description/
 
 class Solution {
-    bool isSem(TreeNode* L, TreeNode *R){
-        if(L == NULL && R == NULL)
-            return true;
-        if(L == NULL || R == NULL){
-            return false;
-        }
-        if(L->val != R->val)
-            return false;
-        return isSem(L->left, R->right) && isSem(L->right, R->left);
-    }
 public:
     bool isSymmetric(TreeNode* root) {
-        return isSem(root->left, root->right);    
+        
+        if(root==NULL) return true; //Tree is empty
+        
+        return isSymmetricTest(root->left,root->right);
+    }
+    
+    bool isSymmetricTest(TreeNode* p , TreeNode* q){
+        if(p == NULL && q == NULL) //left & right node is NULL 
+            return true; 
+        
+        else if(p == NULL || q == NULL) //one of them is Not NULL
+            return false; 
+        
+        else if(p->val!=q->val) 
+            return false;
+        
+        return isSymmetricTest(p->left,q->right ) && isSymmetricTest(p->right,q->left);
+         //comparing left subtree's left child with right subtree's right child --AND-- comparing left subtree's right child with right subtree's left child
     }
 };
